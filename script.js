@@ -3,31 +3,20 @@
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Menu Toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  }
-
   // Portfolio Filtering Tabs
   const tabButtons = document.querySelectorAll('.tab-btn');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Remove active class from all buttons
       tabButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const filterCategory = btn.getAttribute('data-filter');
 
       portfolioItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        if (filterCategory === 'all' || itemCategory === filterCategory) {
+        const itemCategories = item.getAttribute('data-category').split(' ');
+        if (filterCategory === 'all' || itemCategories.includes(filterCategory)) {
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
@@ -48,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       contactNav: "Contact",
       whatsappNav: "Chat",
       heroBadge: "Precision Retention Editing Agency",
-      heroTitle: "High-Converting Visuals. <span>Zero Noise.</span>",
+      heroTitle: 'Be <span class="highlight-seen">SEEN</span> in the Dark',
       heroDesc: "A premier video editing agency specialized in high-retention short-form content for elite brands, creators, and global market leaders.",
       exploreWork: "Explore Portfolio",
       bookWhatsapp: "Book Via WhatsApp",
@@ -65,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tabAll: "All",
       tabPersonal: "Personal Brands",
       tabDoctors: "Doctors",
+      tabAds: "Ads",
       tabRealEstate: "Real Estate",
       tabAgencies: "Agencies",
       principlesTitle: "Built On Standards",
@@ -86,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
       principlesNav: "فلسفتنا",
       contactNav: "تواصل معنا",
       whatsappNav: "محادثة",
-      heroBadge: "وكالة هندسة المحتوى الاحترافي ورفع معدل الاحتفاظ",
-      heroTitle: "مرئيات عالية التحويل. <span>بدون إزعاج.</span>",
+      heroBadge: "وكالة مونتاج واحتفاظ بالمحتوى",
+      heroTitle: 'كن <span class="highlight-seen">واضحاً</span> في الظلام',
       heroDesc: "وكالة مونتاج فيديو متخصصة في هندسة المحتوى القصير للعلامات التجارية النخبة، صناع المحتوى، والشركات العالمية.",
       exploreWork: "استكشف الأعمال",
       bookWhatsapp: "احجز عبر الواتساب",
@@ -104,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tabAll: "الكل",
       tabPersonal: "العلامات الشخصية",
       tabDoctors: "القطاع الطبي",
+      tabAds: "الإعلانات",
       tabRealEstate: "العقارات",
       tabAgencies: "الوكالات",
       principlesTitle: "مبنية على معايير صارمة",
@@ -132,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('rtl');
       }
 
-      // Update text contents
       document.querySelector('a[href="#services"]').textContent = translations[currentLang].servicesNav;
       document.querySelector('a[href="#portfolio"]').textContent = translations[currentLang].portfolioNav;
       document.querySelector('a[href="#principles"]').textContent = translations[currentLang].principlesNav;
@@ -147,37 +137,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       document.querySelector('#services .section-title').textContent = translations[currentLang].servicesTitle;
       document.querySelector('#services .section-subtitle').textContent = translations[currentLang].servicesSubtitle;
-      
-      // Services cards text update
-      const sCards = document.querySelectorAll('.service-card');
-      sCards[0].querySelector('h3').textContent = translations[currentLang].serv1Title;
-      sCards[0].querySelector('p').textContent = translations[currentLang].serv1Desc;
-      sCards[1].querySelector('h3').textContent = translations[currentLang].serv2Title;
-      sCards[1].querySelector('p').textContent = translations[currentLang].serv2Desc;
-      sCards[2].querySelector('h3').textContent = translations[currentLang].serv3Title;
-      sCards[2].querySelector('p').textContent = translations[currentLang].serv3Desc;
 
       document.querySelector('#portfolio .section-title').textContent = translations[currentLang].portfolioTitle;
       document.querySelector('#portfolio .section-subtitle').textContent = translations[currentLang].portfolioSubtitle;
 
-      // Tabs update
       const tabs = document.querySelectorAll('.tab-btn');
       tabs[0].textContent = translations[currentLang].tabAll;
       tabs[1].textContent = translations[currentLang].tabPersonal;
       tabs[2].textContent = translations[currentLang].tabDoctors;
-      tabs[3].textContent = translations[currentLang].tabRealEstate;
-      tabs[4].textContent = translations[currentLang].tabAgencies;
+      tabs[3].textContent = translations[currentLang].tabAds;
+      tabs[4].textContent = translations[currentLang].tabRealEstate;
+      tabs[5].textContent = translations[currentLang].tabAgencies;
 
       document.querySelector('#principles .section-title').textContent = translations[currentLang].principlesTitle;
       document.querySelector('#principles .section-subtitle').textContent = translations[currentLang].principlesSubtitle;
-
-      const pCards = document.querySelectorAll('.principle-card');
-      pCards[0].querySelector('h3').textContent = translations[currentLang].princ1Title;
-      pCards[0].querySelector('p').textContent = translations[currentLang].princ1Desc;
-      pCards[1].querySelector('h3').textContent = translations[currentLang].princ2Title;
-      pCards[1].querySelector('p').textContent = translations[currentLang].princ2Desc;
-      pCards[2].querySelector('h3').textContent = translations[currentLang].princ3Title;
-      pCards[2].querySelector('p').textContent = translations[currentLang].princ3Desc;
 
       document.querySelector('#contact .section-title').textContent = translations[currentLang].contactTitle;
       document.querySelector('#contact .section-subtitle').textContent = translations[currentLang].contactSubtitle;
